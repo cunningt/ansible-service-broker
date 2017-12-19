@@ -877,12 +877,12 @@ func (a AnsibleBroker) Bind(instance apb.ServiceInstance, bindingUUID uuid.UUID,
 			continue
 		}
 
-		a.log.Info("ASYNC binding in progress")
-		bjob := NewBindingJob(serviceInstance, a.clusterConfig, a.log)
+		log.Info("ASYNC binding in progress")
+		bjob := NewBindingJob(instance, a.clusterConfig)
 
 		token, err = a.engine.StartNewJob("", bjob, BindingTopic)
 		if err != nil {
-			a.log.Error("Failed to start new job for async binding\n%s", err.Error())
+			log.Error("Failed to start new job for async binding\n%s", err.Error())
 			return nil, err
 		}
 
@@ -900,7 +900,7 @@ func (a AnsibleBroker) Bind(instance apb.ServiceInstance, bindingUUID uuid.UUID,
 				return nil, err
 			}
 		} else {
-			a.log.Warning("Broker configured to *NOT* launch and run APB bind")
+			log.Warning("Broker configured to *NOT* launch and run APB bind")
 		}
 	}
 

@@ -52,13 +52,11 @@ func (m BindingMsg) Render() string {
 }
 
 // NewBindingJob - Create a new binding job.
-func NewBindingJob(serviceInstance *apb.ServiceInstance, clusterConfig apb.ClusterConfig,
-	log *logging.Logger,
-) *BindingJob {
+func NewBindingJob(serviceInstance *apb.ServiceInstance, clusterConfig apb.ClusterConfig) *BindingJob {
 	return &BindingJob{
 		serviceInstance: serviceInstance,
 		clusterConfig:   clusterConfig,
-		log:             log,
+		log:             nil,
 	}
 }
 
